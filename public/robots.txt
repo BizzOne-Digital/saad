@@ -1,0 +1,8 @@
+# robots.txt for Soro Garage Door Services
+
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+Sitemap: https://www.sorogaragedoors.ca/sitemap.xml

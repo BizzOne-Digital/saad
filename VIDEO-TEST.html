@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Video Test</title>
+    <style>
+        body {
+            background: #000;
+            color: #fff;
+            font-family: Arial;
+            padding: 20px;
+        }
+        video {
+            width: 100%;
+            max-width: 800px;
+            display: block;
+            margin: 20px auto;
+            border: 2px solid #F58220;
+        }
+        .info {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #111;
+            border-radius: 10px;
+        }
+        h1 { color: #F58220; }
+    </style>
+</head>
+<body>
+    <div class="info">
+        <h1>🎬 Video Autoplay Test</h1>
+        <p><strong>Video Path:</strong> /videos/garage-work.mp4</p>
+        <p><strong>Expected:</strong> Video should autoplay (muted) and loop</p>
+    </div>
+
+    <video 
+        id="testVideo"
+        autoplay 
+        muted 
+        loop 
+        playsinline
+        controls
+        onloadeddata="console.log('Video loaded successfully!')"
+        onerror="console.error('Video failed to load!')"
+    >
+        <source src="/videos/garage-work.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="info">
+        <h2>Debug Info:</h2>
+        <div id="debug"></div>
+    </div>
+
+    <script>
+        const video = document.getElementById('testVideo');
+        const debug = document.getElementById('debug');
+        
+        // Log video status
+        video.addEventListener('loadeddata', () => {
+            debug.innerHTML += '<p>✅ Video loaded successfully!</p>';
+            debug.innerHTML += `<p>Duration: ${video.duration}s</p>`;
+            debug.innerHTML += `<p>Dimensions: ${video.videoWidth}x${video.videoHeight}</p>`;
+        });
+        
+        video.addEventListener('playing', () => {
+            debug.innerHTML += '<p>✅ Video is playing!</p>';
+        });
+        
+        video.addEventListener('error', (e) => {
+            debug.innerHTML += '<p>❌ Error loading video!</p>';
+            debug.innerHTML += `<p>Error: ${video.error?.message || 'Unknown error'}</p>`;
+        });
+
+        // Try to play if autoplay fails
+        video.play().then(() => {
+            debug.innerHTML += '<p>✅ Autoplay succeeded!</p>';
+        }).catch(err => {
+            debug.innerHTML += `<p>⚠️ Autoplay blocked: ${err.message}</p>`;
+            debug.innerHTML += '<p>Click the video to play manually</p>';
+        });
+    </script>
+</body>
+</html>

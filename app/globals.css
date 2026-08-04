@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-inter: "Inter", system-ui, -apple-system, sans-serif;
+    --font-outfit: "Outfit", system-ui, -apple-system, sans-serif;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-black text-white antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-bold;
+  }
+}
+
+@layer components {
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .btn-primary {
+    @apply bg-orange hover:bg-orange/90 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-orange/50;
+  }
+
+  .btn-secondary {
+    @apply bg-white hover:bg-gray-100 text-black font-semibold px-6 py-3 rounded-lg transition-all duration-300 hover:scale-105;
+  }
+
+  .btn-outline {
+    @apply border-2 border-orange text-orange hover:bg-orange hover:text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300;
+  }
+
+  .text-gradient-orange {
+    @apply bg-gradient-to-r from-orange to-amber-500 bg-clip-text text-transparent;
+  }
+
+  .glass-effect {
+    @apply bg-black/40 backdrop-blur-md border border-white/10;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-orange/20;
+  }
+
+  .section-padding {
+    @apply py-16 md:py-24 lg:py-32;
+  }
+
+  .orange-glow {
+    @apply shadow-lg shadow-orange/50;
+  }
+
+  .panel-line {
+    @apply h-px bg-gradient-to-r from-transparent via-orange/50 to-transparent;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #111111;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #F58220;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #d67019;
+}
+
+/* Selection */
+::selection {
+  background-color: #F58220;
+  color: white;
+}
